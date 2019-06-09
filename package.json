@@ -1,0 +1,8 @@
+{
+  "name": "schelp",
+  "version": "0.1.0",
+  "description": "Strongly typed helper library for building JSON schemas",
+  "main": "index.js",
+  "author": "Joonmo Yang <dev@remagpie.com>",
+  "license": "BSD-3-Clause"
+}
