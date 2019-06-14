@@ -29,7 +29,9 @@ export default class StringSchema extends AnySchema {
         let schema = super.toSchema(id);
         let pattern: string | undefined;
         if (this.options.pattern != null) {
-            pattern = new RegExp(this.options.pattern, "").toString();
+            pattern = new RegExp(this.options.pattern, "")
+                .toString()
+                .slice(1, -1);
         }
 
         return {

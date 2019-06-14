@@ -1,15 +1,16 @@
 {
-  "compilerOptions": {
-    "target": "ES6",
-    "module": "CommonJS",
-    "declaration": true,
-    "outDir": "lib",
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "CommonJS",
+        "lib": ["ES2015"],
+        "declaration": true,
+        "outDir": "lib",
 
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
-  },
-  "include": ["./src/**/*"]
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true
+    },
+    "include": ["./src/**/*", "./tests/**/*"]
 }
