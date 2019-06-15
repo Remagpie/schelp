@@ -29,6 +29,7 @@ describe("String", () => {
         expect(ajv.validate("schema", {})).to.be.false;
         expect(ajv.validate("schema", [])).to.be.false;
         expect(ajv.validate("schema", 42)).to.be.false;
+        expect(ajv.validate("schema", 0.42)).to.be.false;
         expect(ajv.validate("schema", "string")).to.be.true;
     });
 
