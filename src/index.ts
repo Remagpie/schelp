@@ -9,22 +9,26 @@ export function any(): AnySchema {
     return new AnySchema();
 }
 
-export function boolean(): BooleanSchema {
+export function boolean(): BooleanSchema<boolean> {
     return new BooleanSchema();
 }
 
-export function integer(): IntegerSchema {
+export function integer(): IntegerSchema<number> {
     return new IntegerSchema();
 }
 
-export function nul(): NullSchema {
+export function nul(): NullSchema<null> {
     return new NullSchema();
 }
 
-export function number(): NumberSchema {
+export function number(): NumberSchema<number> {
     return new NumberSchema();
 }
 
-export function string(pattern?: RegExp): StringSchema {
+export function string(pattern?: RegExp): StringSchema<string> {
     return new StringSchema(pattern);
 }
+
+export type TypeOf<T extends AnySchema> = T extends AnySchema<infer S>
+    ? S
+    : never;

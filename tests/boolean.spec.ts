@@ -1,7 +1,7 @@
 import * as Ajv from "ajv";
 import { expect } from "chai";
 
-import BooleanSchema from "../src/boolean";
+import * as schelp from "../src/index";
 
 describe("Boolean", () => {
     let ajv: Ajv.Ajv;
@@ -11,12 +11,12 @@ describe("Boolean", () => {
     });
 
     it("Should generate a valid schema", () => {
-        const basic = new BooleanSchema();
+        const basic = schelp.boolean();
         expect(ajv.validateSchema(basic.toSchema("schema"))).to.be.true;
     });
 
     it("Should accept only boolean values", () => {
-        const schema = new BooleanSchema();
+        const schema = schelp.boolean();
         ajv.addSchema(schema.toSchema("schema"));
         expect(ajv.validate("schema", null)).to.be.false;
         expect(ajv.validate("schema", true)).to.be.true;

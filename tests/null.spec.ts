@@ -1,7 +1,7 @@
 import * as Ajv from "ajv";
 import { expect } from "chai";
 
-import NullSchema from "../src/null";
+import * as schelp from "../src/index";
 
 describe("Null", () => {
     let ajv: Ajv.Ajv;
@@ -11,12 +11,12 @@ describe("Null", () => {
     });
 
     it("Should generate a valid schema", () => {
-        const basic = new NullSchema();
+        const basic = schelp.nul();
         expect(ajv.validateSchema(basic.toSchema("schema"))).to.be.true;
     });
 
     it("Should accept only null values", () => {
-        const schema = new NullSchema();
+        const schema = schelp.nul();
         ajv.addSchema(schema.toSchema("schema"));
         expect(ajv.validate("schema", null)).to.be.true;
         expect(ajv.validate("schema", true)).to.be.false;

@@ -1,7 +1,7 @@
 import AnySchema from "./any";
 
-export default class StringSchema extends AnySchema {
-    protected options!: AnySchema["options"] & {
+export default class StringSchema<T extends string> extends AnySchema<T> {
+    protected options!: AnySchema<T>["options"] & {
         minLength?: number;
         maxLength?: number;
         pattern?: RegExp;
@@ -15,12 +15,12 @@ export default class StringSchema extends AnySchema {
         };
     }
 
-    public min(length: number): StringSchema {
+    public min(length: number): StringSchema<T> {
         this.options.minLength = length;
         return this;
     }
 
-    public max(length: number): StringSchema {
+    public max(length: number): StringSchema<T> {
         this.options.maxLength = length;
         return this;
     }

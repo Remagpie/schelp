@@ -1,7 +1,7 @@
 import * as Ajv from "ajv";
 import { expect } from "chai";
 
-import IntegerSchema from "../src/integer";
+import * as schelp from "../src/index";
 
 describe("Integer", () => {
     let ajv: Ajv.Ajv;
@@ -11,12 +11,12 @@ describe("Integer", () => {
     });
 
     it("Should generate a valid schema", () => {
-        const basic = new IntegerSchema();
+        const basic = schelp.integer();
         expect(ajv.validateSchema(basic.toSchema("schema"))).to.be.true;
     });
 
     it("Should accept only integer values", () => {
-        const schema = new IntegerSchema();
+        const schema = schelp.integer();
         ajv.addSchema(schema.toSchema("schema"));
         expect(ajv.validate("schema", null)).to.be.false;
         expect(ajv.validate("schema", true)).to.be.false;

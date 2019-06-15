@@ -1,7 +1,7 @@
 import AnySchema from "./any";
 
-export default class NumberSchema extends AnySchema {
-    protected options!: AnySchema["options"] & {
+export default class NumberSchema<T extends number> extends AnySchema<T> {
+    protected options!: AnySchema<T>["options"] & {
         multipleOf?: number;
         minimum?: number;
         maximum?: number;
@@ -16,7 +16,7 @@ export default class NumberSchema extends AnySchema {
         };
     }
 
-    public min(value: number, exclusive: boolean = false): NumberSchema {
+    public min(value: number, exclusive: boolean = false): NumberSchema<T> {
         if (exclusive) {
             this.options.minimum = undefined;
             this.options.exclusiveMinimum = value;
@@ -27,7 +27,7 @@ export default class NumberSchema extends AnySchema {
         return this;
     }
 
-    public max(value: number, exclusive: boolean = false): NumberSchema {
+    public max(value: number, exclusive: boolean = false): NumberSchema<T> {
         if (exclusive) {
             this.options.maximum = undefined;
             this.options.exclusiveMaximum = value;
@@ -38,7 +38,7 @@ export default class NumberSchema extends AnySchema {
         return this;
     }
 
-    public multipleOf(value: number): NumberSchema {
+    public multipleOf(value: number): NumberSchema<T> {
         this.options.multipleOf = value;
         return this;
     }
