@@ -14,9 +14,9 @@ export default class AnySchema<T = any> {
         return (this as unknown) as AnySchema<U>;
     }
 
-    public toSchema(id?: string) {
+    public toSchema(id?: string, asRoot: boolean = true) {
         return {
-            $schema: SCHEMA,
+            $schema: asRoot ? SCHEMA : undefined,
             $id: id,
             enum: this.options.enum,
         };

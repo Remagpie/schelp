@@ -25,8 +25,8 @@ export default class StringSchema<T extends string> extends AnySchema<T> {
         return this;
     }
 
-    public toSchema(id?: string) {
-        let schema = super.toSchema(id);
+    public toSchema(id?: string, asRoot: boolean = true) {
+        let schema = super.toSchema(id, asRoot);
         let pattern: string | undefined;
         if (this.options.pattern != null) {
             pattern = new RegExp(this.options.pattern, "")

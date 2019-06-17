@@ -1,12 +1,18 @@
 import AnySchema from "./any";
+import ArraySchema from "./array";
 import BooleanSchema from "./boolean";
 import IntegerSchema from "./integer";
 import NullSchema from "./null";
 import NumberSchema from "./number";
 import StringSchema from "./string";
+import TupleSchema from "./tuple";
 
 export function any(): AnySchema {
     return new AnySchema();
+}
+
+export function array<T>(item: AnySchema<T>): ArraySchema<T> {
+    return new ArraySchema<T>(item);
 }
 
 export function boolean(): BooleanSchema<boolean> {
@@ -27,6 +33,12 @@ export function number(): NumberSchema<number> {
 
 export function string(pattern?: RegExp): StringSchema<string> {
     return new StringSchema(pattern);
+}
+
+export function tuple<T extends any[]>(
+    ...items: { [I in keyof T]: AnySchema<T[I]> }
+): TupleSchema<T> {
+    return new TupleSchema<T>(items);
 }
 
 export type TypeOf<T extends AnySchema> = T extends AnySchema<infer S>

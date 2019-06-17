@@ -43,8 +43,8 @@ export default class NumberSchema<T extends number> extends AnySchema<T> {
         return this;
     }
 
-    public toSchema(id?: string) {
-        const schema = super.toSchema(id);
+    public toSchema(id?: string, asRoot: boolean = true) {
+        const schema = super.toSchema(id, asRoot);
 
         return {
             ...schema,
