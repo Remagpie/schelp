@@ -2,11 +2,23 @@ export const SCHEMA = "http://json-schema.org/draft-07/schema#";
 
 export default class AnySchema<T = any> {
     protected options: {
+        optional: boolean;
         enum?: T[];
     };
 
     public constructor() {
-        this.options = {};
+        this.options = {
+            optional: false,
+        };
+    }
+
+    public isOptional(): boolean {
+        return this.options.optional;
+    }
+
+    public optional() {
+        this.options.optional = true;
+        return this;
     }
 
     public enum<U extends T>(values: U[]): AnySchema<U> {

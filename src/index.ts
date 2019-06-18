@@ -4,6 +4,7 @@ import BooleanSchema from "./boolean";
 import IntegerSchema from "./integer";
 import NullSchema from "./null";
 import NumberSchema from "./number";
+import ObjectSchema from "./object";
 import StringSchema from "./string";
 import TupleSchema from "./tuple";
 
@@ -29,6 +30,12 @@ export function nul(): NullSchema<null> {
 
 export function number(): NumberSchema<number> {
     return new NumberSchema();
+}
+
+export function object<T extends object>(
+    fields: { [K in keyof T]: AnySchema<T[K]> },
+): ObjectSchema<T> {
+    return new ObjectSchema(fields);
 }
 
 export function string(pattern?: RegExp): StringSchema<string> {
